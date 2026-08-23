@@ -4,30 +4,38 @@ export interface ChangelogEntry {
   description: string;
 }
 
-// Newest first. Add an entry here whenever a user-visible change ships.
+// Newest first. Add an entry here whenever a user-visible change ships —
+// write it for the reader (what's better for them now), not as an
+// engineering log of what was implemented.
 export const CHANGELOG: ChangelogEntry[] = [
   {
-    date: "2026-08-23",
-    title: "Nouvelle identité visuelle et titres en français",
+    date: "2026-08-24",
+    title: "Des étiquettes plus lisibles et un thème clair",
     description:
-      "Refonte complète du design (thème sombre, palette premium violet/indigo/bleu, bordures dégradées sur les cartes), traduction automatique des titres d'articles en français, renommage du produit en \"Radar S&GEO\", et ajout de cette page de changelog.",
+      "Chaque thématique a désormais sa propre couleur, aussi bien dans les filtres que sur les articles, pour repérer un sujet en un coup d'œil. Le badge \"Impact fort\" passe au rouge pour un signal plus intuitif. Et un bouton dans l'en-tête permet de basculer entre thème sombre et thème clair selon vos préférences.",
   },
   {
     date: "2026-08-23",
-    title: "Passage à une collecte quotidienne",
+    title: "Nouvelle identité et titres traduits en français",
     description:
-      "La fréquence de collecte est ajustée à une fois par jour (6h UTC) pour rester compatible avec le plan Vercel Hobby, qui limite les cron jobs à une exécution quotidienne. Objectif de revenir à plusieurs collectes par jour si le plan d'hébergement évolue.",
+      "Radar S&GEO change de nom et de look avec une nouvelle identité visuelle premium. Surtout : tous les titres d'articles sont désormais traduits en français, même lorsque la source est anglophone, pour un fil encore plus rapide à parcourir.",
   },
   {
     date: "2026-08-23",
-    title: "Enrichissement IA via Mistral",
+    title: "Un point complet chaque matin",
     description:
-      "Le moteur d'enrichissement (résumé, tagging thématique, score d'impact) passe de Claude à Mistral (mistral-small-latest), pour un meilleur rapport qualité/prix en français.",
+      "La collecte automatique s'exécute désormais tous les jours à 6h : votre fil est à jour dès le début de la journée, sans avoir à vérifier chaque source une par une. Des collectes plus fréquentes arriveront prochainement.",
   },
   {
     date: "2026-08-23",
-    title: "Lancement",
+    title: "Résumés IA plus fiables",
     description:
-      "Première version : agrégation de 12 sources SEO/GEO de référence, résumés générés par IA en français, tagging thématique, scoring d'impact et tendances de la semaine.",
+      "Les résumés générés automatiquement s'en tiennent désormais strictement aux informations présentes dans l'article source, sans ajouter de détail ou de contexte non vérifié.",
+  },
+  {
+    date: "2026-08-23",
+    title: "Lancement de Radar S&GEO",
+    description:
+      "Première version : agrégation de 12 sources SEO et GEO de référence, résumés générés par IA en français, classement par thème, score d'impact pour repérer l'essentiel en un coup d'œil, et tendances de la semaine.",
   },
 ];

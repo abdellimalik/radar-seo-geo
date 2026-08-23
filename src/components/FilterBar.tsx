@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { THEMES } from "@/lib/themes";
+import { THEMES, themeVars } from "@/lib/themes";
 import { buildHref } from "@/lib/filters";
 
 export function FilterBar({
@@ -28,21 +28,27 @@ export function FilterBar({
       >
         Tout
       </Link>
-      {THEMES.map((t) => (
-        <Link
-          key={t.slug}
-          href={buildHref(current, { theme: t.slug })}
-          className={
-            "rounded-full border px-3 py-1 text-sm font-medium transition-colors " +
-            (activeTheme === t.slug
-              ? "border-transparent text-white shadow-[0_0_16px_-4px_rgba(107,10,184,0.7)]"
-              : "border-line text-ink-muted hover:border-line-strong hover:text-ink")
-          }
-          style={activeTheme === t.slug ? { background: "var(--gradient-brand)" } : undefined}
-        >
-          {t.label}
-        </Link>
-      ))}
+      {THEMES.map((t) => {
+        const { fg } = themeVars(t.slug);
+        const isActive = activeTheme === t.slug;
+        return (
+          <Link
+            key={t.slug}
+            href={buildHref(current, { theme: t.slug })}
+            className="rounded-full px-3 py-1 text-sm font-medium transition-[background-color,box-shadow] duration-150"
+            style={{
+              color: fg,
+              borderWidth: 1,
+              borderStyle: "solid",
+              borderColor: isActive ? fg : `color-mix(in srgb, ${fg} 35%, transparent)`,
+              backgroundColor: `color-mix(in srgb, ${fg} ${isActive ? 16 : 6}%, transparent)`,
+              boxShadow: isActive ? `0 0 14px -4px color-mix(in srgb, ${fg} 70%, transparent)` : undefined,
+            }}
+          >
+            {t.label}
+          </Link>
+        );
+      })}
     </nav>
   );
 }

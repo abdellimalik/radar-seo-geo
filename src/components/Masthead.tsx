@@ -3,6 +3,7 @@ import { Radar } from "lucide-react";
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
 import { formatPublished } from "@/lib/format";
+import { ThemeToggle } from "./ThemeToggle";
 
 export function Masthead({
   sourceCount,
@@ -25,7 +26,11 @@ export function Masthead({
             <Radar className="h-5 w-5" strokeWidth={2} />
           </span>
           <h1 className="font-display text-2xl font-extrabold tracking-tight sm:text-3xl">
-            Radar S&amp;GEO
+            Radar S
+            <span className="mx-[0.06em] font-sans font-medium not-italic tracking-normal text-brand-3">
+              &amp;
+            </span>
+            GEO
           </h1>
         </div>
         <nav className="flex items-center gap-5 text-sm font-medium text-ink-muted">
@@ -36,6 +41,7 @@ export function Masthead({
             Changelog
           </Link>
           <p className="hidden text-ink-faint sm:block">{today}</p>
+          <ThemeToggle />
         </nav>
       </div>
       <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-x-4 gap-y-1 px-4 pb-4 pt-3 text-xs text-ink-faint sm:px-6">

@@ -1,27 +1,28 @@
 @import "tailwindcss";
 
 /*
-  Direction v2 (redesign, pinned by the user): premium dark / "web3" register.
-  Deep navy ground, a three-stop purple→indigo→blue brand gradient reserved
-  for borders, badges, active states and background atmosphere — never for
-  text (gradient text is a banned AI-slop pattern; emphasis comes from
-  weight/size/glow instead). See PRODUCT.md > Brand Commitments and
-  DESIGN.md for the full record. Supersedes the v1 restrained light
-  editorial system.
+  Direction v2.1: premium "web3" register, now with a light/dark toggle.
+  Dark is the pinned default (brief: exact hex values, "premium/web3").
+  Light is a same-identity daytime variant, not a return to the old v1
+  editorial world — same gradient, same tag hues, adapted for contrast.
+  Tokens use light-dark(lightValue, darkValue) driven by color-scheme,
+  which the [data-theme] rules below set from the toggle's choice.
+  See PRODUCT.md > Brand Commitments and DESIGN.md.
 */
 
 :root {
-  --bg: #0a0f27;
-  --bg-raised: #171b3d;
-  --bg-sunken: #060819;
-  --bg-overlay: #20255000;
+  color-scheme: dark;
 
-  --ink: #f4f5fc;
-  --ink-muted: #9da3d1;
-  --ink-faint: #8288b8;
+  --bg: light-dark(#f6f7fc, #0a0f27);
+  --bg-raised: light-dark(#ffffff, #171b3d);
+  --bg-sunken: light-dark(#e8e9f5, #060819);
 
-  --line: rgba(120, 140, 255, 0.14);
-  --line-strong: rgba(120, 140, 255, 0.32);
+  --ink: light-dark(#12162e, #f4f5fc);
+  --ink-muted: light-dark(#4b5079, #9da3d1);
+  --ink-faint: light-dark(#5a5f8c, #8288b8);
+
+  --line: light-dark(rgba(71, 74, 140, 0.16), rgba(120, 140, 255, 0.14));
+  --line-strong: light-dark(rgba(71, 74, 140, 0.32), rgba(120, 140, 255, 0.32));
 
   --brand-1: #6b0ab8;
   --brand-2: #340da4;
@@ -33,12 +34,16 @@
     var(--brand-3) 100%
   );
 
-  --tag-update: #6e8cff;
-  --tag-geo: #d68fff;
-  --tag-links: #4fd1c5;
-  --tag-technique: #5ec8f2;
-  --tag-content: #ffb84d;
-  --tag-local: #4ade80;
+  --impact-1: #dc2626;
+  --impact-2: #f97316;
+  --gradient-impact: linear-gradient(135deg, var(--impact-1) 0%, var(--impact-2) 100%);
+
+  --tag-update: light-dark(#3b4fcc, #6e8cff);
+  --tag-geo: light-dark(#9333c7, #d68fff);
+  --tag-links: light-dark(#0b6f65, #4fd1c5);
+  --tag-technique: light-dark(#0c6488, #5ec8f2);
+  --tag-content: light-dark(#95500a, #ffb84d);
+  --tag-local: light-dark(#137038, #4ade80);
 
   --font-display: var(--font-archivo);
   --font-body: var(--font-inter);
@@ -62,8 +67,20 @@
   --font-mono: var(--font-data);
 }
 
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+}
+
 html {
   color-scheme: dark;
+}
+
+html[data-theme="light"] {
+  color-scheme: light;
 }
 
 body {
@@ -90,9 +107,30 @@ body {
   font-feature-settings: "tnum" 1, "cv11" 1;
 }
 
+html[data-theme="light"] body {
+  background:
+    radial-gradient(
+      1100px 620px at 12% -12%,
+      color-mix(in srgb, var(--brand-1) 9%, transparent),
+      transparent 60%
+    ),
+    radial-gradient(
+      900px 520px at 108% 8%,
+      color-mix(in srgb, var(--brand-3) 8%, transparent),
+      transparent 55%
+    ),
+    radial-gradient(
+      800px 500px at 50% 120%,
+      color-mix(in srgb, var(--brand-2) 6%, transparent),
+      transparent 60%
+    ),
+    var(--bg);
+  background-attachment: fixed;
+}
+
 ::selection {
   background: var(--brand-3);
-  color: var(--bg);
+  color: white;
 }
 
 * {

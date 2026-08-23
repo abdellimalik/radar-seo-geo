@@ -88,11 +88,16 @@ values ('mon-slug', 'Mon Nom', 'https://...', 'https://.../feed', 'fr');
 ## Design & changelog
 
 Palette et système de design documentés dans [DESIGN.md](./DESIGN.md) :
-thème sombre, dégradé de marque (`#6B0AB8 → #340DA4 → #476AED`) réservé
+thème sombre par défaut avec bascule vers un thème clair (bouton dans le
+masthead), dégradé de marque (`#6B0AB8 → #340DA4 → #476AED`) réservé
 aux bordures/badges/états actifs. La page [`/changelog`](./src/app/changelog/page.tsx)
 liste les évolutions produit ; ajoutez une entrée dans
 [`src/lib/changelog.ts`](./src/lib/changelog.ts) à chaque changement
-visible pour l'utilisateur.
+visible pour l'utilisateur. **Le changelog est lu par l'utilisateur** :
+rédigez chaque entrée du point de vue du bénéfice obtenu ("votre fil est
+à jour dès le matin"), jamais comme un journal technique interne (pas de
+mention de plan d'hébergement, de fournisseur IA ou de contrainte
+d'implémentation).
 
 ## Base de données initiale
 
