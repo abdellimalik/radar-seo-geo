@@ -1,14 +1,10 @@
-# Le Radar — veille SEO & GEO
+# Radar S&GEO
 
 Plateforme de veille quotidienne SEO/GEO : collecte automatique de 12
-sources de référence, résumé, tagging thématique, scoring d'impact et
-détection de tendances par IA. Voir [PRODUCT.md](./PRODUCT.md) pour le
-cadrage produit complet et [DESIGN.md](./DESIGN.md) pour le système de
-design.
-
-> **Nom provisoire** — "Le Radar" est un nom de travail, pas une décision
-> de marque. Renommez-le librement (metadata dans `src/app/layout.tsx`,
-> `<h1>` dans `src/components/Masthead.tsx`).
+sources de référence, résumé et titres traduits en français, tagging
+thématique, scoring d'impact et détection de tendances par IA. Voir
+[PRODUCT.md](./PRODUCT.md) pour le cadrage produit complet et
+[DESIGN.md](./DESIGN.md) pour le système de design.
 
 ## Stack
 
@@ -49,12 +45,12 @@ l'UI affiche alors l'extrait original en repli.
 
 ## Déployer sur Vercel
 
-1. Créez un dépôt GitHub et poussez ce projet (`git init` a déjà été fait
-   localement).
-2. Sur [vercel.com/new](https://vercel.com/new), importez le dépôt.
-3. Renseignez les variables d'environnement ci-dessus dans les
-   Project Settings de Vercel (Production + Preview).
-4. Déployez.
+Le dépôt est sur [github.com/abdellimalik/radar-seo-geo](https://github.com/abdellimalik/radar-seo-geo)
+et déjà connecté à Vercel : tout push sur `main` redéploie automatiquement.
+Pour un nouveau déploiement depuis zéro : importez le dépôt sur
+[vercel.com/new](https://vercel.com/new), renseignez les variables
+d'environnement ci-dessus dans les Project Settings (Production +
+Preview), puis déployez.
 
 ## Collecte automatique (une fois par jour)
 
@@ -88,6 +84,15 @@ passez par le SQL Editor de Supabase ou l'API :
 insert into public.sources (slug, name, site_url, feed_url, language)
 values ('mon-slug', 'Mon Nom', 'https://...', 'https://.../feed', 'fr');
 ```
+
+## Design & changelog
+
+Palette et système de design documentés dans [DESIGN.md](./DESIGN.md) :
+thème sombre, dégradé de marque (`#6B0AB8 → #340DA4 → #476AED`) réservé
+aux bordures/badges/états actifs. La page [`/changelog`](./src/app/changelog/page.tsx)
+liste les évolutions produit ; ajoutez une entrée dans
+[`src/lib/changelog.ts`](./src/lib/changelog.ts) à chaque changement
+visible pour l'utilisateur.
 
 ## Base de données initiale
 

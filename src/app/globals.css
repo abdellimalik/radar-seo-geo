@@ -1,38 +1,44 @@
 @import "tailwindcss";
 
 /*
-  Direction: wire-service editorial briefing for SEO/GEO.
-  Cool newsprint ground (not warm cream), near-black ink, one committed
-  press-red for "impact majeur" signals, six named muted hues for topics.
-  See PRODUCT.md > Brand Commitments for the confirmed craft references.
+  Direction v2 (redesign, pinned by the user): premium dark / "web3" register.
+  Deep navy ground, a three-stop purple→indigo→blue brand gradient reserved
+  for borders, badges, active states and background atmosphere — never for
+  text (gradient text is a banned AI-slop pattern; emphasis comes from
+  weight/size/glow instead). See PRODUCT.md > Brand Commitments and
+  DESIGN.md for the full record. Supersedes the v1 restrained light
+  editorial system.
 */
 
 :root {
-  --paper: hsl(36 12% 96%);
-  --paper-raised: hsl(36 20% 99%);
-  --paper-sunken: hsl(36 10% 92%);
-  --ink: hsl(222 28% 12%);
-  --ink-muted: hsl(222 16% 38%);
-  --ink-faint: hsl(222 16% 45%);
-  --line: hsl(222 14% 85%);
-  --line-strong: hsl(222 16% 76%);
+  --bg: #0a0f27;
+  --bg-raised: #171b3d;
+  --bg-sunken: #060819;
+  --bg-overlay: #20255000;
 
-  --accent: hsl(353 82% 42%);
-  --accent-ink: hsl(353 82% 32%);
-  --accent-tint: hsl(353 82% 96%);
+  --ink: #f4f5fc;
+  --ink-muted: #9da3d1;
+  --ink-faint: #8288b8;
 
-  --tag-update: hsl(224 55% 40%);
-  --tag-update-tint: hsl(224 55% 95%);
-  --tag-geo: hsl(266 42% 42%);
-  --tag-geo-tint: hsl(266 42% 96%);
-  --tag-links: hsl(174 48% 26%);
-  --tag-links-tint: hsl(174 48% 94%);
-  --tag-technique: hsl(199 58% 33%);
-  --tag-technique-tint: hsl(199 58% 95%);
-  --tag-content: hsl(28 55% 36%);
-  --tag-content-tint: hsl(28 55% 94%);
-  --tag-local: hsl(142 38% 27%);
-  --tag-local-tint: hsl(142 38% 94%);
+  --line: rgba(120, 140, 255, 0.14);
+  --line-strong: rgba(120, 140, 255, 0.32);
+
+  --brand-1: #6b0ab8;
+  --brand-2: #340da4;
+  --brand-3: #476aed;
+  --gradient-brand: linear-gradient(
+    135deg,
+    var(--brand-1) 0%,
+    var(--brand-2) 55%,
+    var(--brand-3) 100%
+  );
+
+  --tag-update: #6e8cff;
+  --tag-geo: #d68fff;
+  --tag-links: #4fd1c5;
+  --tag-technique: #5ec8f2;
+  --tag-content: #ffb84d;
+  --tag-local: #4ade80;
 
   --font-display: var(--font-archivo);
   --font-body: var(--font-inter);
@@ -40,36 +46,53 @@
 }
 
 @theme inline {
-  --color-paper: var(--paper);
-  --color-paper-raised: var(--paper-raised);
-  --color-paper-sunken: var(--paper-sunken);
+  --color-bg: var(--bg);
+  --color-bg-raised: var(--bg-raised);
+  --color-bg-sunken: var(--bg-sunken);
   --color-ink: var(--ink);
   --color-ink-muted: var(--ink-muted);
   --color-ink-faint: var(--ink-faint);
   --color-line: var(--line);
   --color-line-strong: var(--line-strong);
-  --color-accent: var(--accent);
-  --color-accent-ink: var(--accent-ink);
-  --color-accent-tint: var(--accent-tint);
+  --color-brand-1: var(--brand-1);
+  --color-brand-2: var(--brand-2);
+  --color-brand-3: var(--brand-3);
   --font-sans: var(--font-body);
   --font-display: var(--font-display);
   --font-mono: var(--font-data);
 }
 
 html {
-  color-scheme: light;
+  color-scheme: dark;
 }
 
 body {
-  background: var(--paper);
+  background:
+    radial-gradient(
+      1100px 620px at 12% -12%,
+      color-mix(in srgb, var(--brand-1) 26%, transparent),
+      transparent 60%
+    ),
+    radial-gradient(
+      900px 520px at 108% 8%,
+      color-mix(in srgb, var(--brand-3) 20%, transparent),
+      transparent 55%
+    ),
+    radial-gradient(
+      800px 500px at 50% 120%,
+      color-mix(in srgb, var(--brand-2) 16%, transparent),
+      transparent 60%
+    ),
+    var(--bg);
+  background-attachment: fixed;
   color: var(--ink);
   font-family: var(--font-body);
   font-feature-settings: "tnum" 1, "cv11" 1;
 }
 
 ::selection {
-  background: var(--accent);
-  color: var(--paper-raised);
+  background: var(--brand-3);
+  color: var(--bg);
 }
 
 * {
@@ -89,11 +112,11 @@ body {
 ::-webkit-scrollbar-thumb {
   background: var(--line-strong);
   border-radius: 999px;
-  border: 2px solid var(--paper);
+  border: 2px solid var(--bg);
 }
 
 :focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--brand-3);
   outline-offset: 2px;
   border-radius: 2px;
 }
@@ -106,6 +129,41 @@ body {
 
 .tabular {
   font-variant-numeric: tabular-nums;
+}
+
+/* Gradient-ring: a hairline brand-gradient border via mask-composite, so it
+   never fights the card's own border-radius or padding. `.ring-static`
+   keeps it always visible (lead card); the bare class fades in on
+   `.ring-trigger:hover`/`:focus-within` for the rest. */
+.gradient-ring {
+  position: relative;
+  isolation: isolate;
+}
+
+.gradient-ring::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: var(--gradient-brand);
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.gradient-ring.ring-static::before {
+  opacity: 1;
+}
+
+.ring-trigger:hover .gradient-ring::before,
+.ring-trigger:focus-within .gradient-ring::before {
+  opacity: 1;
 }
 
 @keyframes rise-in {

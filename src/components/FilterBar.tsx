@@ -21,9 +21,10 @@ export function FilterBar({
         className={
           "rounded-full border px-3 py-1 text-sm font-medium transition-colors " +
           (!activeTheme
-            ? "border-ink bg-ink text-paper-raised"
-            : "border-line text-ink-muted hover:border-line-strong")
+            ? "border-transparent text-white shadow-[0_0_16px_-4px_rgba(107,10,184,0.7)]"
+            : "border-line text-ink-muted hover:border-line-strong hover:text-ink")
         }
+        style={!activeTheme ? { background: "var(--gradient-brand)" } : undefined}
       >
         Tout
       </Link>
@@ -34,9 +35,10 @@ export function FilterBar({
           className={
             "rounded-full border px-3 py-1 text-sm font-medium transition-colors " +
             (activeTheme === t.slug
-              ? "border-ink bg-ink text-paper-raised"
-              : "border-line text-ink-muted hover:border-line-strong")
+              ? "border-transparent text-white shadow-[0_0_16px_-4px_rgba(107,10,184,0.7)]"
+              : "border-line text-ink-muted hover:border-line-strong hover:text-ink")
           }
+          style={activeTheme === t.slug ? { background: "var(--gradient-brand)" } : undefined}
         >
           {t.label}
         </Link>

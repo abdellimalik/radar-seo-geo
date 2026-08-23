@@ -36,7 +36,7 @@ export function TrendingRail({
                 className="relative block overflow-hidden rounded-md px-2.5 py-2 text-sm"
               >
                 <span
-                  className="absolute inset-y-0 left-0 opacity-[0.08]"
+                  className="absolute inset-y-0 left-0 opacity-[0.16]"
                   style={{ width: `${width}%`, backgroundColor: fg }}
                   aria-hidden
                 />
@@ -81,7 +81,7 @@ export function SourceRail({
             className={
               "block rounded-md px-2.5 py-1.5 text-sm " +
               (!activeSource
-                ? "bg-paper-sunken font-semibold text-ink"
+                ? "bg-bg-sunken font-semibold text-ink"
                 : "text-ink-muted hover:text-ink")
             }
           >
@@ -95,7 +95,7 @@ export function SourceRail({
               className={
                 "flex items-center justify-between gap-2 rounded-md px-2.5 py-1.5 text-sm " +
                 (activeSource === s.slug
-                  ? "bg-paper-sunken font-semibold text-ink"
+                  ? "bg-bg-sunken font-semibold text-ink"
                   : "text-ink-muted hover:text-ink")
               }
             >

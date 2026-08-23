@@ -24,6 +24,7 @@ export interface Article {
   guid: string | null;
   url: string;
   title: string;
+  title_fr: string | null;
   original_excerpt: string | null;
   author: string | null;
   published_at: string;

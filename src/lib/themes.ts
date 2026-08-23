@@ -15,7 +15,7 @@ export function themeLabel(slug: string): string {
   return byslug.get(slug as ThemeSlug)?.label ?? slug;
 }
 
-export function themeVars(slug: string): { fg: string; bg: string } {
+export function themeVars(slug: string): { fg: string } {
   const key = byslug.get(slug as ThemeSlug)?.var ?? "update";
-  return { fg: `var(--tag-${key})`, bg: `var(--tag-${key}-tint)` };
+  return { fg: `var(--tag-${key})` };
 }

@@ -74,6 +74,7 @@ export async function collectAndEnrich(): Promise<CollectResult> {
           await supabase
             .from("articles")
             .update({
+              title_fr: enrichment.title_fr,
               summary_fr: enrichment.summary_fr,
               themes: enrichment.themes,
               impact_level: enrichment.impact_level,

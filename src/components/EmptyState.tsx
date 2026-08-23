@@ -6,7 +6,7 @@ export function EmptyState() {
       <Radar className="h-6 w-6 text-ink-faint" strokeWidth={1.75} aria-hidden />
       <p className="max-w-md text-sm text-ink-muted">
         Aucun article ne correspond à ce filtre pour le moment. La prochaine
-        collecte automatique passera plusieurs fois aujourd&rsquo;hui.
+        collecte automatique passe chaque matin.
       </p>
     </div>
   );

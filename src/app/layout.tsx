@@ -21,7 +21,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Le Radar — veille SEO & GEO",
+  title: "Radar S&GEO",
   description:
     "Briefing quotidien des nouveautés SEO et GEO, résumé et hiérarchisé par IA à partir des meilleures sources du secteur.",
 };
@@ -32,24 +32,25 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="fr"
       className={`${archivo.variable} ${inter.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-paper text-ink">
+      <body className="min-h-full flex flex-col bg-bg text-ink">
         {/*
-          THESIS: A wire-service briefing for SEO/GEO — density and editorial
-          hierarchy over raw chronology, never a generic SaaS dashboard.
-          OWN-WORLD: cool newsprint-gray ground, near-black ink, condensed
-          Archivo headlines at tight tracking, Inter body, one committed
-          press-red for "impact majeur", six named muted hues for topics,
-          byline metadata rows — never a kicker above the headline.
+          THESIS: A premium, brand-forward wire-service briefing for
+          SEO/GEO — density and hierarchy over raw chronology, now carried
+          by a saturated dark register instead of a quiet newsprint one.
+          OWN-WORLD: deep navy ground (#0A0F27) with soft brand-color bloom
+          atmosphere, near-white ink, a purple→indigo→blue gradient
+          reserved for borders/badges/active-states (never text), Archivo
+          headlines, Inter body, six luminous named hues for topics.
           STORY: the reader scans the lead briefing, sees urgent vs routine
-          at a glance via the impact badge, filters by theme/source, and
+          at a glance via the gradient impact badge, filters by theme, and
           spots the week's trending topic without reading every article.
-          FIRST VIEWPORT: masthead + trending-topics rail + full-width lead
-          story, then a river of enriched cards (headline-forward, byline
-          and tags below, priority badge inline).
-          FORM: standing exit (canon), confirmed by the user — editorial
-          wire-service register, craft bar = Search Engine Land, Search
-          Engine Journal, SERoundtable, Abondance, Axios. No direction roll:
-          canon path taken per new-work.md, recorded in PRODUCT.md.
+          FIRST VIEWPORT: masthead (product name + nav) + lead story with a
+          static gradient ring, then a river of cards whose gradient ring
+          appears on hover, trending rail alongside.
+          FORM: redesign, brief-pinned by the user (exact hex values given,
+          explicit "premium/web3" direction, gradient borders requested) —
+          supersedes the v1 canon editorial world. Recorded in PRODUCT.md
+          and DESIGN.md.
           FINISH: unreviewed and undocumented is unfinished; this build ends
           with the finish review, the verdict, DESIGN.md, and every shipping
           raster carrying its provenance.

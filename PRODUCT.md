@@ -30,7 +30,8 @@ Consultation quotidienne (une collecte planifiée par jour à 6h UTC via Vercel 
 
 - Sources initiales obligatoires : Search Engine Land, Search Engine Journal, Search Engine Roundtable, Abondance.
 - Sources élargies validées : Google Search Central Blog, Moz Blog, Ahrefs Blog, Backlinko, iPullRank (Mike King), Growth Memo (Kevin Indig), Onely Blog, Aleyda Solis — soit 12 sources au total au lancement (Previsible initialement envisagée, remplacée par Aleyda Solis : flux RSS mort/bloqué).
-- Enrichissement IA : résumé en français (2-3 lignes), tagging thématique, scoring d'impact/priorité, détection de tendances. Moteur : Mistral (`mistral-small-latest`), clé API fournie par l'utilisateur et configurée.
+- Enrichissement IA : titre traduit/adapté en français, résumé en français (2-3 lignes), tagging thématique, scoring d'impact/priorité, détection de tendances. Moteur : Mistral (`mistral-small-latest`), clé API fournie par l'utilisateur et configurée.
+- Page `/changelog` : historique des évolutions produit, tenu à jour manuellement dans `src/lib/changelog.ts` à chaque changement visible pour l'utilisateur.
 - Pas d'alertes email/Slack pour le moment (fonctionnalité écartée à ce stade).
 - Pas d'authentification pour le moment (accès direct à l'URL).
 - Base de données : projet Supabase `wxzokuqeveaallgerdgx` (région eu-west-1), réactivé, migré et en production.
@@ -39,7 +40,15 @@ Consultation quotidienne (une collecte planifiée par jour à 6h UTC via Vercel 
 
 ## Brand Commitments
 
-Aucun nom de marque ni logo définis à ce stade. Direction visuelle standing (chemin canon, confirmé explicitement par l'utilisateur, pas de monde visuel inventé) : registre éditorial/magazine, calé sur le niveau de craft de Search Engine Land, Search Engine Journal, Search Engine Roundtable, Abondance.com, et Axios (format "smart brevity" : titres denses, cartes courtes scannables, tags colorés par thème — cohérent avec le scoring/tagging IA du produit). Thème par défaut clair, chaleureux, type presse/papier, lisibilité éditoriale maximale ; un mode sombre optionnel peut être ajouté mais n'est pas le défaut.
+Nom : **Radar S&GEO** (confirmé explicitement par l'utilisateur, orthographe validée après clarification — mot-valise fusionnant SEO et GEO). Aucun logo au-delà du monogramme "Radar" en dégradé de marque utilisé dans le masthead.
+
+Direction visuelle v2 (redesign brief-pinned, remplace la v1 éditoriale/claire ci-dessous, historique conservé pour traçabilité) : registre sombre "premium / web3", explicitement demandé par l'utilisateur avec des valeurs hexadécimales précises et une consigne de bordures dégradées, en réaction au fait que la v1 lui semblait trop générique ("IA slop"). Palette : fond `#0A0F27` (quasi noir bleuté), dégradé de marque `#6B0AB8 → #340DA4 → #476AED` (violet → indigo → bleu) réservé aux bordures, badges, états actifs et halos de fond — jamais au texte (le texte en dégradé est un pattern IA-slop banni par le skill de design, l'emphase vient du poids/de la taille). Bordures dégradées ("gradient ring") permanentes sur l'article à la une, apparaissant au survol sur les autres cartes. Détails dans DESIGN.md.
+
+<details><summary>Historique — direction v1 (éditoriale claire, remplacée le 2026-08-23)</summary>
+
+Chemin canon, confirmé explicitement par l'utilisateur, pas de monde visuel inventé : registre éditorial/magazine, calé sur le niveau de craft de Search Engine Land, Search Engine Journal, Search Engine Roundtable, Abondance.com, et Axios (format "smart brevity"). Thème clair, chaleureux, type presse/papier. Remplacée car jugée trop générique par l'utilisateur malgré le contrôle mécanique du skill de design.
+
+</details>
 
 ## Evidence on Hand
 
