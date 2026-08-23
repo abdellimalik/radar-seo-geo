@@ -29,8 +29,7 @@ npm run dev
 
 Ouvrez [http://localhost:3000](http://localhost:3000) (ou le port indiqué).
 Les variables d'environnement sont déjà pré-remplies dans `.env.local`
-pour Supabase ; il manque encore `ANTHROPIC_API_KEY` pour activer
-l'enrichissement (voir plus bas).
+pour Supabase et Mistral.
 
 ## Variables d'environnement
 
@@ -57,25 +56,27 @@ l'UI affiche alors l'extrait original en repli.
    Project Settings de Vercel (Production + Preview).
 4. Déployez.
 
-## Collecte automatique (plusieurs fois par jour)
+## Collecte automatique (une fois par jour)
 
 La route `/api/collect` (protégée par `CRON_SECRET`) déclenche la
 collecte RSS + enrichissement IA pour les 12 sources actives.
 
-Deux options, **choisissez-en une seule** pour éviter d'appeler l'IA deux
-fois pour rien :
+`vercel.json` déclenche cette route tous les jours à 6h UTC (~8h à Paris
+en été, 7h en hiver) via Vercel Cron — compatible avec le plan **Hobby**
+gratuit, qui limite les cron jobs à une exécution par jour.
 
-- **`vercel.json`** (inclus, `0 */4 * * *`, 6 fois/jour) — nécessite un
-  plan **Vercel Pro** : le plan Hobby limite les cron jobs à une
-  exécution par jour.
-- **`.github/workflows/collect.yml`** (inclus, 4 fois/jour) — fonctionne
-  sur un plan Vercel Hobby gratuit. Ajoutez dans les secrets du dépôt
-  GitHub : `APP_URL` (l'URL de votre déploiement Vercel) et
-  `CRON_SECRET` (la même valeur que sur Vercel).
+Pour repasser à plusieurs collectes par jour plus tard, deux voies :
+passer au plan **Vercel Pro** (~20$/mois, cron jobs illimités en
+fréquence) et resserrer le `schedule` dans `vercel.json` (ex:
+`"0 */4 * * *"` pour 6 fois/jour) ; ou déclencher `/api/collect` depuis
+un service de cron externe gratuit (GitHub Actions, cron-job.org...) en
+lui passant l'en-tête `Authorization: Bearer <CRON_SECRET>`.
 
-Si vous restez sur Vercel Hobby, supprimez le bloc `crons` de
-`vercel.json` pour éviter qu'il ne s'exécute une fois par jour en plus du
-workflow GitHub.
+Pour déclencher une collecte manuellement à tout moment (test, rattrapage) :
+
+```bash
+curl -H "Authorization: Bearer <CRON_SECRET>" https://votre-app.vercel.app/api/collect
+```
 
 ## Gérer les sources
 
