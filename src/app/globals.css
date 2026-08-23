@@ -1,26 +1,130 @@
 @import "tailwindcss";
 
+/*
+  Direction: wire-service editorial briefing for SEO/GEO.
+  Cool newsprint ground (not warm cream), near-black ink, one committed
+  press-red for "impact majeur" signals, six named muted hues for topics.
+  See PRODUCT.md > Brand Commitments for the confirmed craft references.
+*/
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --paper: hsl(36 12% 96%);
+  --paper-raised: hsl(36 20% 99%);
+  --paper-sunken: hsl(36 10% 92%);
+  --ink: hsl(222 28% 12%);
+  --ink-muted: hsl(222 16% 38%);
+  --ink-faint: hsl(222 16% 45%);
+  --line: hsl(222 14% 85%);
+  --line-strong: hsl(222 16% 76%);
+
+  --accent: hsl(353 82% 42%);
+  --accent-ink: hsl(353 82% 32%);
+  --accent-tint: hsl(353 82% 96%);
+
+  --tag-update: hsl(224 55% 40%);
+  --tag-update-tint: hsl(224 55% 95%);
+  --tag-geo: hsl(266 42% 42%);
+  --tag-geo-tint: hsl(266 42% 96%);
+  --tag-links: hsl(174 48% 26%);
+  --tag-links-tint: hsl(174 48% 94%);
+  --tag-technique: hsl(199 58% 33%);
+  --tag-technique-tint: hsl(199 58% 95%);
+  --tag-content: hsl(28 55% 36%);
+  --tag-content-tint: hsl(28 55% 94%);
+  --tag-local: hsl(142 38% 27%);
+  --tag-local-tint: hsl(142 38% 94%);
+
+  --font-display: var(--font-archivo);
+  --font-body: var(--font-inter);
+  --font-data: var(--font-jetbrains);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-paper: var(--paper);
+  --color-paper-raised: var(--paper-raised);
+  --color-paper-sunken: var(--paper-sunken);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-faint: var(--ink-faint);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-tint: var(--accent-tint);
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
+  --font-mono: var(--font-data);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  color-scheme: light;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-feature-settings: "tnum" 1, "cv11" 1;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--paper-raised);
+}
+
+* {
+  scrollbar-color: var(--line-strong) transparent;
+  scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--line-strong);
+  border-radius: 999px;
+  border: 2px solid var(--paper);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.rise-in {
+  animation: rise-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rise-in {
+    animation: none;
+  }
 }
